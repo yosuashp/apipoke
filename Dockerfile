@@ -47,4 +47,4 @@ ENV PATH="/usr/local/bin:${PATH}"
 COPY . /app
 
 # Menjalankan aplikasi Flask
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "run:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "run:app"]
