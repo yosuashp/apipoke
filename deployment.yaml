@@ -18,7 +18,7 @@ spec:
       - image: sahat850/pokeapi:latest
         name: pokeapi
         ports:
-        - containerPort: 8080
+        - containerPort: 443
         resources:
           limits:
             cpu: "250m"
@@ -39,8 +39,8 @@ metadata:
 spec:
   ports:
   - name: "pokeapi"
-    port: 80
-    targetPort: 8080
+    port: 443
+    targetPort: 443
   selector:
     app: pokeapi
   type: LoadBalancer
