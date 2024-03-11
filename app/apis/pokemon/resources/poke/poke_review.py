@@ -65,7 +65,7 @@ class Review(Resource):
                         'content': review.content,
                         'pokemon_name': review.pokemon_name,
                         'user_ip': review.user_ip,
-                        'user_agent': review.user_agent.decode('utf-8'),
+                        'user_agent': review.user_agent,
                         'created_at': review.created_at.isoformat(),
                         'updated_at': review.updated_at.isoformat() if review.updated_at else None
                     }
