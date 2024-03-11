@@ -3732,3 +3732,11 @@ requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 [2024-03-11 23:17:22,154] INFO in _internal:  * Debugger PIN: 120-375-008
 [2024-03-11 23:18:19,746] INFO in _internal: 127.0.0.1 - - [11/Mar/2024 23:18:19] "GET /pokemon/v1/reviews HTTP/1.1" 200 -
 [2024-03-11 23:18:50,673] INFO in _internal: 127.0.0.1 - - [11/Mar/2024 23:18:50] "GET /pokemon/v1/review/pikachu HTTP/1.1" 200 -
+[2024-03-12 04:11:46,126] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9090
+ * Running on http://192.168.0.113:9090
+[2024-03-12 04:11:46,127] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2024-03-12 04:11:46,128] INFO in _internal:  * Restarting with stat
+[2024-03-12 04:11:46,527] WARNING in _internal:  * Debugger is active!
+[2024-03-12 04:11:46,539] INFO in _internal:  * Debugger PIN: 120-375-008
