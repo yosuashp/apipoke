@@ -115,10 +115,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - netdin.my.id  # Your domain name
+    - netidn.my.id  # Your domain name
     secretName: my-tls-secret-2  # Your secret name
   rules:
-  - host: netdin.my.id
+  - host: netidn.my.id
     http:
       paths:
       - path: /
