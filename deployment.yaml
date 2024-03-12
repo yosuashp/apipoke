@@ -167,7 +167,7 @@ spec:
               fieldRef:
                 fieldPath: metadata.name
           - name: ZBX_SERVER_HOST
-            value: "34.70.47.142"  # Ganti dengan alamat IP server Zabbix
+            value: "34.70.47.142:10051"  # Ganti dengan alamat IP server Zabbix
       restartPolicy: Always
 
 ---
