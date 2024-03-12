@@ -18,7 +18,7 @@ spec:
       - image: sahat850/pokeapi:latest
         name: pokeapi
         ports:
-        - containerPort: 8080
+        - containerPort: 80
         resources:
           limits:
             cpu: "250m"
@@ -40,7 +40,7 @@ spec:
   ports:
   - name: "pokeapi"
     port: 80
-    targetPort: 8080
+    targetPort: 80
   selector:
     app: pokeapi
   type: LoadBalancer
