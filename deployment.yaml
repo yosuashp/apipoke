@@ -39,7 +39,7 @@ metadata:
 spec:
   ports:
   - name: "pokeapi"
-    port: 80
+    port: 443
     targetPort: 8080
   selector:
     app: pokeapi
@@ -80,4 +80,4 @@ spec:
           service:
             name: pokeapi
             port:
-              number: 80
+              number: 443
