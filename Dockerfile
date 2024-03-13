@@ -50,7 +50,7 @@ RUN apt-get update && apt-get install -y curl sudo
 COPY . /app
 
 # Copy konfigurasi New Relic
-COPY newrelic.ini /app/newrelic.ini
+COPY newrelic-infra.yaml /etc/newrelic-infra.yaml
 
 # Install New Relic CLI dan jalankan perintah instalasi New Relic
 RUN curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | sudo bash && \
