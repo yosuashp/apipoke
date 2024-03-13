@@ -165,7 +165,7 @@ spec:
           - name: ZBX_HOSTNAME
             value: "pokeapi"  # Set ZBX_HOSTNAME directly to the desired hostname
           - name: ZBX_SERVER_HOST
-            value: "34.172.236.7"  # Ganti dengan alamat IP server Zabbix
+            value: "34.70.47.142"  # Ganti dengan alamat IP server Zabbix
       restartPolicy: Always
 
 ---
