@@ -305,6 +305,10 @@ spec:
             cpu: "100m"
             memory: "128Mi"
       restartPolicy: Always
+      volumes:
+        - name: newrelic-config-volume
+          secret:
+            secretName: newrelic-config
 
 ---
 
@@ -316,9 +320,9 @@ metadata:
   name: pokeapi
 spec:
   ports:
-  - name: "http"
-    port: 80
-    targetPort: 8080
+    - name: "http"
+      port: 80
+      targetPort: 8080
   selector:
     app: pokeapi
   type: LoadBalancer
