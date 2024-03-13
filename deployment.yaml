@@ -264,6 +264,73 @@
 #   type: LoadBalancer
 
 
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     app: pokeapi
+#   name: pokeapi
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: pokeapi
+#   template:
+#     metadata:
+#       labels:
+#         app: pokeapi
+#     spec:
+#       containers:
+#       - image: sahat850/pokeapi:latest
+#         name: pokeapi
+#         ports:
+#           - containerPort: 8080
+#         resources:
+#           limits:
+#             cpu: "250m"
+#             memory: "250Mi"
+#           requests:
+#             cpu: "100m"
+#             memory: "128Mi"
+#         volumeMounts:
+#           - name: newrelic-config-volume
+#             mountPath: /etc/newrelic
+#           - name: newrelic-config
+#             mountPath: /app/newrelic.ini
+#             subPath: newrelic.ini
+#         env:
+#           - name: NEW_RELIC_CONFIG_FILE
+#             value: "/etc/newrelic/newrelic.ini"
+#           - name: NEW_RELIC_APP_NAME
+#             value: "apipoke"
+#           - name: NEW_RELIC_LICENSE_KEY
+#             value: "9a127124385845755f938edf0b5573faFFFFNRAL"
+#       volumes:
+#         - name: newrelic-config-volume
+#           secret:
+#             secretName: newrelic-config
+#         - name: newrelic-config
+#           configMap:
+#             name: newrelic-config
+
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     app: pokeapi
+#   name: pokeapi
+# spec:
+#   ports:
+#   - name: "http"
+#     port: 80
+#     targetPort: 8080
+#   selector:
+#     app: pokeapi
+#   type: LoadBalancer
+
+
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -284,7 +351,7 @@ spec:
       - image: sahat850/pokeapi:latest
         name: pokeapi
         ports:
-          - containerPort: 8080
+        - containerPort: 8080
         resources:
           limits:
             cpu: "250m"
@@ -292,28 +359,10 @@ spec:
           requests:
             cpu: "100m"
             memory: "128Mi"
-        volumeMounts:
-          - name: newrelic-config-volume
-            mountPath: /etc/newrelic
-          - name: newrelic-config
-            mountPath: /app/newrelic.ini
-            subPath: newrelic.ini
-        env:
-          - name: NEW_RELIC_CONFIG_FILE
-            value: "/etc/newrelic/newrelic.ini"
-          - name: NEW_RELIC_APP_NAME
-            value: "apipoke"
-          - name: NEW_RELIC_LICENSE_KEY
-            value: "9a127124385845755f938edf0b5573faFFFFNRAL"
-      volumes:
-        - name: newrelic-config-volume
-          secret:
-            secretName: newrelic-config
-        - name: newrelic-config
-          configMap:
-            name: newrelic-config
+      restartPolicy: Always
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -322,7 +371,7 @@ metadata:
   name: pokeapi
 spec:
   ports:
-  - name: "http"
+  - name: "pokeapi"
     port: 80
     targetPort: 8080
   selector:
