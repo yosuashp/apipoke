@@ -392,7 +392,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:
-  - host: pokeapi.example.com
+  - host: netidn.my.id
     http:
       paths:
       - pathType: Prefix
@@ -404,5 +404,5 @@ spec:
               number: 80
   tls:
   - hosts:
-    - pokeapi.example.com
+    - netidn.my.id
     secretName: pokeapi-tls
