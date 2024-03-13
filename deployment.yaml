@@ -160,7 +160,7 @@ spec:
       - name: zabbix-agent
         image: zabbix/zabbix-agent:latest
         ports:
-        - containerPort: 10050
+        - containerPort: 10051
         env:
           - name: ZBX_HOSTNAME
             value: "pokeapi"  # Set ZBX_HOSTNAME directly to the desired hostname
