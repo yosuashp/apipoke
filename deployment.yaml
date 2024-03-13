@@ -329,6 +329,113 @@
 #     app: pokeapi
 #   type: LoadBalancer
 
+#################berhasil install ssl###############
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     app: pokeapi
+#   name: pokeapi
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: pokeapi
+#   template:
+#     metadata:
+#       labels:
+#         app: pokeapi
+#     spec:
+#       containers:
+#       - image: sahat850/pokeapi:latest
+#         name: pokeapi
+#         ports:
+#         - containerPort: 8080
+#         resources:
+#           limits:
+#             cpu: "700m"
+#             memory: "750Mi"
+#           requests:
+#             cpu: "100m"
+#             memory: "128Mi"
+#       restartPolicy: Always
+
+# ---
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     app: pokeapi
+#   name: pokeapi
+# spec:
+#   ports:
+#   - name: "http-pokeapi"
+#     port: 80
+#     targetPort: 8080
+#   - name: "https-pokeapi"
+#     port: 80
+#     targetPort: 8080
+#   selector:
+#     app: pokeapi
+#   type: LoadBalancer
+
+# ---
+
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: pokeapi-ingress
+#   annotations:
+#     kubernetes.io/ingress.class: nginx  # Menentukan kelas Ingress sebagai nginx
+#     cert-manager.io/cluster-issuer: letsencrypt-prod
+# spec:
+#   rules:
+#   - host: netidn.my.id
+#     http:
+#       paths:
+#       - pathType: Prefix
+#         path: "/"
+#         backend:
+#           service:
+#             name: pokeapi
+#             port:
+#               number: 80
+#   tls:
+#   - hosts:
+#     - netidn.my.id
+#     secretName: pokeapi-tls
+
+# ---
+
+# apiVersion: cert-manager.io/v1
+# kind: ClusterIssuer
+# metadata:
+#   name: letsencrypt-prod
+# spec:
+#   acme:
+#     server: https://acme-v02.api.letsencrypt.org/directory
+#     email: yosyosua43@gmail.com
+#     privateKeySecretRef:
+#       name: letsencrypt-prod
+#     solvers:
+#     - http01:
+#         ingress:
+#           class: nginx
+
+# ---
+
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: pokeapi-tls
+# spec:
+#   secretName: pokeapi-tls
+#   dnsNames:
+#   - netidn.my.id
+#   issuerRef:
+#     name: letsencrypt-prod
+#     kind: ClusterIssuer
 
 apiVersion: apps/v1
 kind: Deployment
@@ -374,7 +481,7 @@ spec:
     port: 80
     targetPort: 8080
   - name: "https-pokeapi"
-    port: 80
+    port: 443
     targetPort: 8080
   selector:
     app: pokeapi
@@ -387,7 +494,7 @@ kind: Ingress
 metadata:
   name: pokeapi-ingress
   annotations:
-    kubernetes.io/ingress.class: nginx  # Menentukan kelas Ingress sebagai nginx
+    kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:
@@ -400,7 +507,7 @@ spec:
           service:
             name: pokeapi
             port:
-              number: 80
+              number: 443
   tls:
   - hosts:
     - netidn.my.id
@@ -436,4 +543,3 @@ spec:
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-
