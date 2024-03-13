@@ -163,9 +163,7 @@ spec:
         - containerPort: 10050
         env:
           - name: ZBX_HOSTNAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
+            value: "pokeapi"  # Set ZBX_HOSTNAME directly to the desired hostname
           - name: ZBX_SERVER_HOST
             value: "34.70.47.142"  # Ganti dengan alamat IP server Zabbix
       restartPolicy: Always
@@ -186,30 +184,4 @@ spec:
   selector:
     app: pokeapi
   type: LoadBalancer
-
----
-
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: pokeapi-ingress
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-spec:
-  tls:
-  - hosts:
-    - netidn.my.id  # Your domain name
-    secretName: my-tls-secret-2  # Your secret name
-  rules:
-  - host: netidn.my.id
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: pokeapi
-            port:
-              number: 80
 
