@@ -406,8 +406,3 @@ spec:
     - netidn.my.id
     secretName: pokeapi-tls
 
-  tls:
-  - hosts:
-    - netidn.my.id
-    secretName: pokeapi-tls
-
