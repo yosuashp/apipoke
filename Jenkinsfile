@@ -3,7 +3,7 @@ pipeline {
     environment {
         PROJECT_ID = 'multi-ks8-416911'
                 CLUSTER_NAME = 'k8s-project'
-                LOCATION = 'us-central1-c'
+                LOCATION = 'us-east1-b'
                 CREDENTIALS_ID = 'kubernetes'
     }
     
