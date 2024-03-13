@@ -285,6 +285,13 @@ spec:
         name: pokeapi
         ports:
           - containerPort: 8080
+        resources:
+          limits:
+            cpu: "250m"
+            memory: "250Mi"
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
         volumeMounts:
           - name: newrelic-config-volume
             mountPath: /etc/newrelic
@@ -305,10 +312,8 @@ spec:
         - name: newrelic-config
           configMap:
             name: newrelic-config
-      restartPolicy: Always
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -317,7 +322,7 @@ metadata:
   name: pokeapi
 spec:
   ports:
-  - name: "pokeapi"
+  - name: "http"
     port: 80
     targetPort: 8080
   selector:
