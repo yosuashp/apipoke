@@ -40,21 +40,19 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Install gunicorn
 RUN pip install gunicorn
 
-# Tambahkan direktori instalasi Gunicorn ke dalam PATH
-ENV PATH="/usr/local/bin:${PATH}"
-
 # Install curl dan sudo
 RUN apt-get update && apt-get install -y curl sudo
+
+# Install New Relic Python Agent
+RUN pip install newrelic
 
 # Copy seluruh kode proyek ke dalam container
 COPY . /app
 
 # Copy konfigurasi New Relic
-COPY newrelic-infra.yaml /etc/newrelic-infra.yaml
-
-# Install New Relic CLI dan jalankan perintah instalasi New Relic
-RUN curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | sudo bash && \
-    NEW_RELIC_API_KEY=NRAK-TRTJQ7TG2WATVQUCG563XCXHRG1 NEW_RELIC_ACCOUNT_ID=4388003 newrelic install -n logs-integration
+COPY newrelic.ini /app/newrelic.ini
 
 # Menjalankan aplikasi Flask dengan New Relic
 CMD ["newrelic-admin", "run-program", "gunicorn", "-b", "0.0.0.0:8080", "run:app"]
+
+
