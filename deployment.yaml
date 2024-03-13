@@ -291,6 +291,13 @@ spec:
           - name: newrelic-config
             mountPath: /app/newrelic.ini
             subPath: newrelic.ini
+        env:
+          - name: NEW_RELIC_CONFIG_FILE
+            value: "/etc/newrelic/newrelic.ini"
+          - name: NEW_RELIC_APP_NAME
+            value: "apipoke"
+          - name: NEW_RELIC_LICENSE_KEY
+            value: "9a127124385845755f938edf0b5573faFFFFNRAL"
       volumes:
         - name: newrelic-config-volume
           secret:
@@ -298,13 +305,6 @@ spec:
         - name: newrelic-config
           configMap:
             name: newrelic-config
-      env:
-        - name: NEW_RELIC_CONFIG_FILE
-          value: "/etc/newrelic/newrelic.ini"  # Sesuaikan dengan lokasi konfigurasi New Relic Anda
-        - name: NEW_RELIC_APP_NAME
-          value: "apipoke"
-        - name: NEW_RELIC_LICENSE_KEY
-          value: "9a127124385845755f938edf0b5573faFFFFNRAL"  # Sesuaikan dengan kunci lisensi New Relic Anda
       restartPolicy: Always
 
 ---
