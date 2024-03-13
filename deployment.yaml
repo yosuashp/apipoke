@@ -317,7 +317,7 @@ metadata:
   name: pokeapi
 spec:
   ports:
-  - name: "http"
+  - name: "pokeapi"
     port: 80
     targetPort: 8080
   selector:
