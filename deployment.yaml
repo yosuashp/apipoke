@@ -288,8 +288,16 @@ spec:
         volumeMounts:
           - name: newrelic-config-volume
             mountPath: /etc/newrelic
+          - name: newrelic-config
+            mountPath: /app/newrelic.ini
+            subPath: newrelic.ini
       volumes:
         - name: newrelic-config-volume
+          secret:
+            secretName: newrelic-config
+        - name: newrelic-config
+          configMap:
+            name: newrelic-config
       env:
         - name: NEW_RELIC_CONFIG_FILE
           value: "/etc/newrelic/newrelic.ini"  # Sesuaikan dengan lokasi konfigurasi New Relic Anda
@@ -297,18 +305,7 @@ spec:
           value: "apipoke"
         - name: NEW_RELIC_LICENSE_KEY
           value: "9a127124385845755f938edf0b5573faFFFFNRAL"  # Sesuaikan dengan kunci lisensi New Relic Anda
-        resources:
-          limits:
-            cpu: "250m"
-            memory: "250Mi"
-          requests:
-            cpu: "100m"
-            memory: "128Mi"
       restartPolicy: Always
-      volumes:
-        - name: newrelic-config-volume
-          secret:
-            secretName: newrelic-config
 
 ---
 
@@ -320,9 +317,9 @@ metadata:
   name: pokeapi
 spec:
   ports:
-    - name: "http"
-      port: 80
-      targetPort: 8080
+  - name: "http"
+    port: 80
+    targetPort: 8080
   selector:
     app: pokeapi
   type: LoadBalancer
