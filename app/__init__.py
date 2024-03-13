@@ -1,6 +1,7 @@
 # from authlib.integrations.flask_client import OAuth
-import os
 import sys
+import newrelic.agent
+import os
 from flask import Flask, got_request_exception, abort as original_flask_abort
 from flask_cors import CORS
 from flask_restful import Api
@@ -8,7 +9,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_sieve import Sieve
 from logging.config import dictConfig
 
-
+newrelic.agent.initialize(
+    os.environ.get('NEW_RELIC_CONFIG_FILE', 'newrelic.ini')
+)
 
 # Create package object.
 db = SQLAlchemy()

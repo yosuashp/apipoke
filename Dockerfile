@@ -46,5 +46,9 @@ ENV PATH="/usr/local/bin:${PATH}"
 # Copy seluruh kode proyek ke dalam container
 COPY . /app
 
-# Menjalankan aplikasi Flask
-CMD ["gunicorn", "-b", "0.0.0.0:8080", "run:app"]
+# Copy konfigurasi New Relic
+COPY newrelic.ini /app/newrelic.ini
+
+# Menjalankan aplikasi Flask dengan New Relic
+CMD ["newrelic-admin", "run-program", "gunicorn", "-b", "0.0.0.0:8080", "run:app"]
+

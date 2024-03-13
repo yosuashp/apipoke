@@ -3740,3 +3740,20 @@ requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 [2024-03-12 04:11:46,128] INFO in _internal:  * Restarting with stat
 [2024-03-12 04:11:46,527] WARNING in _internal:  * Debugger is active!
 [2024-03-12 04:11:46,539] INFO in _internal:  * Debugger PIN: 120-375-008
+[2024-03-13 16:05:46,430] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.0.113:8080
+[2024-03-13 16:05:46,430] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2024-03-13 16:05:46,431] INFO in _internal:  * Restarting with stat
+[2024-03-13 16:05:46,954] WARNING in _internal:  * Debugger is active!
+[2024-03-13 16:05:47,066] INFO in _internal:  * Debugger PIN: 106-396-976
+[2024-03-13 16:08:08,354] INFO in _internal: 127.0.0.1 - - [13/Mar/2024 16:08:08] "GET /pokemon/v1/reviews HTTP/1.1" 200 -
+[2024-03-13 16:19:33,356] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.0.113:8080
+[2024-03-13 16:19:33,357] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2024-03-13 16:19:33,358] INFO in _internal:  * Restarting with stat
+[2024-03-13 16:19:33,879] WARNING in _internal:  * Debugger is active!
+[2024-03-13 16:19:33,880] INFO in _internal:  * Debugger PIN: 106-396-976
