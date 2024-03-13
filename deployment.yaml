@@ -387,8 +387,8 @@ kind: Ingress
 metadata:
   name: pokeapi-ingress
   annotations:
-    kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/ingress.class: nginx  # Menentukan kelas Ingress sebagai nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:
   - host: netidn.my.id
@@ -401,6 +401,11 @@ spec:
             name: pokeapi
             port:
               number: 80
+  tls:
+  - hosts:
+    - netidn.my.id
+    secretName: pokeapi-tls
+
   tls:
   - hosts:
     - netidn.my.id
