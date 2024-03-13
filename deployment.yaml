@@ -374,7 +374,7 @@ spec:
     port: 80
     targetPort: 8080
   - name: "https-pokeapi"
-    port: 443
+    port: 80
     targetPort: 8080
   selector:
     app: pokeapi
