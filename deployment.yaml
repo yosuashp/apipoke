@@ -414,33 +414,4 @@ metadata:
   name: letsencrypt-prod
 spec:
   acme:
-    server: https://acme-v02.api.letsencrypt.org/directory
-    email: yosyosua43@gmail.com
-    privateKeySecretRef:
-      name: letsencrypt-prod
-    solvers:
-    - http01:
-        ingress:
-          class: nginx
-
----
-
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: pokeapi-tls
-spec:
-  secretName: pokeapi-tls
-  dnsNames:
-  - netidn.my.id
-  issuerRef:
-    name: letsencrypt-prod
-    kind: ClusterIssuer
-  acme:
-    config:
-    - http01:
-        ingressClass: nginx
-      domains:
-      - netidn.my.id
-
-
+    server: https://acme-v02
