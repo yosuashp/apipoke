@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        PROJECT_ID = 'multi-ks8-416911'
-                CLUSTER_NAME = 'k8s-project'
+        PROJECT_ID = 'skrisi-415115'
+                CLUSTER_NAME = 'pokeapi'
                 LOCATION = 'us-east1-b'
                 CREDENTIALS_ID = 'kubernetes'
     }
